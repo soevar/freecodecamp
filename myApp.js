@@ -3,6 +3,8 @@ let app = express();
 
 //console.log("Hello World");
 
+app.use("/public", express.static(__dirname + "/public"));
+
 // routing
 app.get("/", function (req, res) {
   console.info(req.url);
