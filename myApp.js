@@ -46,4 +46,19 @@ app.get(
   }
 );
 
+app.get("/:word/echo", (req, res) =>{
+  let datas = req.params.word;
+  res.json({
+    echo: datas,
+  });
+});
+
+app.get("/name", (req, res) =>{
+  let firstName = req.query.first;
+  let lastName = req.query.last;
+  res.json({
+    name: firstName + " " + lastName,
+  });
+});
+
 module.exports = app;
