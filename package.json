@@ -1,5 +1,9 @@
 {
   "name": "fcc-learn-node-with-express",
+  "author": "Bang Pardi",
+	"description": "A project that does something awesome",
+	"keywords": [ "descriptive", "related", "words", "freecodecamp" ],
+	"license": "MIT",
   "version": "0.1.0",
   "dependencies": {
     "body-parser": "^1.15.2",
