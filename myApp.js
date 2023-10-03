@@ -1,11 +1,12 @@
 require("dotenv").config({ path: "./.env" });
+let bodyParser = require("body-parser");
 const e = require("express");
 let express = require("express");
 const { log } = require("fcc-express-bground");
 let app = express();
 
 //console.log("Hello World");
-
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/public", express.static(__dirname + "/public"));
 
 // log root level
@@ -46,19 +47,21 @@ app.get(
   }
 );
 
-app.get("/:word/echo", (req, res) =>{
+app.get("/:word/echo", (req, res) => {
   let datas = req.params.word;
   res.json({
     echo: datas,
   });
 });
 
-app.get("/name", (req, res) =>{
+app.get("/name", (req, res) => {
   let firstName = req.query.first;
   let lastName = req.query.last;
   res.json({
     name: firstName + " " + lastName,
   });
 });
+
+app.use(bodyParser.json());
 
 module.exports = app;
