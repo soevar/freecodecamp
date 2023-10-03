@@ -64,4 +64,12 @@ app.get("/name", (req, res) => {
 
 app.use(bodyParser.json());
 
+app.post("/name", (req, res) => {
+  let firstName = req.body.first;
+  let lastName = req.body.last;
+  res.json({
+    name: firstName + " " + lastName,
+  });
+});
+
 module.exports = app;
