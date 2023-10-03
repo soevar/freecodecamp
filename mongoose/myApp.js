@@ -13,21 +13,44 @@ const Schema = mongoose.Schema;
 const personSchema = new Schema({
   name: { type: String, required: true },
   age: Number,
-  favoriteFood: [String],
+  favoriteFoods: [String],
 });
 
 let Person = mongoose.model("Person", personSchema);
+console.log('person ' + Person);
 
 const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+  let pardi = new Person({ name: 'Bang Pardi', age: 25, favoriteFoods: ['reading', 'coding'] });
+  pardi.save((err, data) => {
+    if (err) return console.error(err);
+    done(null, data);
+  });
+
+  //done(null /*, data*/);
 };
+
+let arrayOfPeople =[
+  { name: 'Sofwan', age: 30, favoriteFoods: ['watching', 'mancing']},
+  { name: 'Wandy', age: 31, favoriteFoods: ['walking', 'running']},
+  { name: 'Firgi', age: 28, favoriteFoods: ['coding', 'mimping']}  
+]
 
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+    Person.create(arrayOfPeople, function(err, people){
+        if (err) return console.error(err);
+        done(null, people);
+    })
+  //done(null /*, data*/);
 };
 
+let personName='Firgi';
+
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+    Person.find({name:personName}, function(err, personFound){
+        if (err) return console.error(err);
+        done(null, personFound);
+    });
+  //done(null /*, data*/);
 };
 
 const findOneByFood = (food, done) => {
